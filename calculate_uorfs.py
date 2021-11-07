@@ -35,7 +35,6 @@ def parse_file(filename):
                 ids = line[id_idx].replace(' ', '').split(',')  # get all transcript ids for the given line and convert them into a string array
 
                 max_len = 0
-                no_results = 0
                 for index in range(0, len(ids)):
                     cur.execute("SELECT SEQ, CDS_START_INDEX,EXON_LENS, TRANSCRIPT_ID From TRANSCRIPTS WHERE TRANSCRIPT_ID  LIKE ?", ['%' + str(ids[index]) + '%'])
                     transcript_results = cur.fetchall()
@@ -98,7 +97,7 @@ def parse_file(filename):
     write_values_to_output_file(tani_values, 'Tani Scatter Plot.csv')
     write_values_to_output_file(maekawa_values, 'Maekawa Scatter Plot.csv')
 
-    print('Could not determine results for ' + str(no_results) + ' transcripts')
+    print('Could not determine results for ' + str(no_results) + ' genes')
     print("done")
 
 
