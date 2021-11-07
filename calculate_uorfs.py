@@ -112,14 +112,14 @@ def add_to_bin(bin, index, item):
 
 # calculate uorf length given a sequence and a cds start position
 def calculate_uorfs(seq, cds_start_pos):
-    is_uorf = [False, False, False] # each index represents one of the 3 diffrent reading frames
+    is_uorf = [False, False, False]  # each index represents one of the 3 diffrent reading frames
     uorf_codons = 0
 
     in_cds = False
     index = 0
     # while the current postion is not in the cds region or one of the current reading frames is still in the middle of a uorf
     while index < len(seq) - 2 and (not in_cds or is_uorf[0] or is_uorf[1] or is_uorf[2]):
-        frame = index % 3 # calculate current reading frame
+        frame = index % 3  # calculate current reading frame
 
         # check to see if the current codon in the current reading is start codon and that the current codon is in the cds
         if seq[index] == 'A' and seq[index + 1] == 'T' and seq[index + 2] == 'G' and not in_cds:
@@ -135,11 +135,12 @@ def calculate_uorfs(seq, cds_start_pos):
 
         index += 1
 
-        #check if the next codon will be in the cds
+        # check if the next codon will be in the cds
         if index + 2 >= cds_start_pos:
             in_cds = True
 
     return uorf_codons
+
 
 # write results from bins to a tab delineated file
 def write_bins_to_output_file(bins, filename, bin_size):
@@ -160,6 +161,7 @@ def write_bins_to_output_file(bins, filename, bin_size):
         line = line + str(len(bins[index])) + '\n'
         output_file.write(line)
 
+
 # write results from values to a tab delineated file.
 def write_values_to_output_file(values, filename):
     os.chdir(RESULTSDIR)
@@ -170,6 +172,7 @@ def write_values_to_output_file(values, filename):
     for pair in values:
         line = str(pair[0]) + '\t' + str(pair[1]) + '\t' + str(pair[2]) + '\n'
         output_file.write(line)
+
 
 parse_file(half_lives_file)
 conn.close()
