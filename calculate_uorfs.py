@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 # CHANGE THE FOLLOWING 3 LINES OF CODE:
-half_lives_file = '/..../Supplemental_Table_S3_half lifves BRIC seq.csv'  # Input the path to the csv data for transcript half-lives
+half_lives_file = '/..../Supplemental_Table_S3'  # Input the path to the tab delimited file for transcript half-lives
 nih_custom_transcript_db = '/.../hg38_nih_custom.db'  # Input the path to the db generated from other script
 RESULTSDIR = '/...'  # Input path to folder where the results will be saved
 
